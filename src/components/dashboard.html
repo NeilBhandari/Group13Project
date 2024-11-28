@@ -82,7 +82,7 @@
                     </div>
                     <nav className="flex space-x-4">
                         <a href="scholarships.html" className="text-white hover:text-blue-300">Scholarships</a>
-                        <a href="#" className="text-white hover:text-blue-300">Tutoring</a>
+                        <a href="tutoring.html" className="text-white hover:text-blue-300">Tutoring</a>
                         <a href="jobs.html" className="text-white hover:text-blue-300">Jobs</a>
                         <a href="#" className="text-white hover:text-blue-300">Profile</a>
                         <a href="logout.html" className="text-white hover:text-blue-300">Logout</a>
@@ -108,7 +108,7 @@
         function MainContent() {
             return (
                 <main className="flex-1 p-4">
-                    <h2 className="text-2xl font-bold mb-4">Welcome back, [User's Name]!!</h2>
+                    <h2 className="text-2xl font-bold mb-4">Welcome back, [User's Name]!</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         <Widget title="Recent Scholarships" buttonText="View All Scholarships" buttonLink="#">
                             <ul>
@@ -126,22 +126,6 @@
                                     <h4 className="font-bold">Scholarship C</h4>
                                     <p>Eligibility: Criteria C</p>
                                     <p>Deadline: 2023-10-31</p>
-                                </li>
-                            </ul>
-                        </Widget>
-                        <Widget title="Upcoming Tutoring Sessions" buttonText="Manage Tutoring Sessions" buttonLink="#">
-                            <ul>
-                                <li className="mb-2">
-                                    <h4 className="font-bold">Math with Tutor A</h4>
-                                    <p>Date: 2023-10-15</p>
-                                </li>
-                                <li className="mb-2">
-                                    <h4 className="font-bold">Science with Tutor B</h4>
-                                    <p>Date: 2023-10-20</p>
-                                </li>
-                                <li className="mb-2">
-                                    <h4 className="font-bold">English with Tutor C</h4>
-                                    <p>Date: 2023-10-25</p>
                                 </li>
                             </ul>
                         </Widget>
@@ -174,22 +158,6 @@
                                 <li className="mb-2">
                                     <h4 className="font-bold">Guide C</h4>
                                     <p>Description of Guide C</p>
-                                </li>
-                            </ul>
-                        </Widget>
-                        <Widget title="Notifications" buttonText="View All Notifications" buttonLink="#">
-                            <ul>
-                                <li className="mb-2">
-                                    <h4 className="font-bold">Notification A</h4>
-                                    <p>Details of Notification A</p>
-                                </li>
-                                <li className="mb-2">
-                                    <h4 class ="font-bold">Notification B</h4>
-                                    <p>Details of Notification B</p>
-                                </li>
-                                <li className="mb-2">
-                                    <h4 className="font-bold">Notification C</h4>
-                                    <p>Details of Notification C</p>
                                 </li>
                             </ul>
                         </Widget>
