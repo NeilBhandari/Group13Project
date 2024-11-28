@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings | Scholar Sync</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f8fb;
+            color: #333;
+        }
+
+        header {
+            background-color: #1d4ed8;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header nav a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .container h2 {
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .welcome-message {
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .explanation {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #555;
+            text-align: center;
+        }
+
+        .search-bar {
+            display: flex;
+            margin-bottom: 30px;
+        }
+
+        .search-bar input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .job-listings {
+            list-style: none;
+            padding: 0;
+        }
+
+        .job-listings li {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .job-listings li:last-child {
+            border-bottom: none;
+        }
+
+        .job-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .job-apply {
+            color: #1d4ed8;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .job-apply:hover {
+            text-decoration: underline;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            background-color: #1d4ed8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .pagination button:hover {
+            background-color: #155bb5;
+        }
+
+        .pagination button:disabled {
+            background-color: #bbb;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" style="color: white; text-decoration: none;">Scholar Sync</a></h1>
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="scholarships.html">Scholarships</a>
+            <a href="tutoring.html">Tutoring</a>
+            <a href="logout.html">Logout</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h2>Jobs and Internships</h2>
+        <div class="welcome-message">Welcome, <strong>[User's Name]</strong>!</div>
+        <div class="explanation">You can view all the available job and internship listings here. Explore opportunities and apply directly through the links provided!</div>
+        
+        <div class="search-bar">
+            <input type="text" id="job-search" placeholder="Search for jobs by title, company, or keyword...">
+        </div>
+        
+        <ul class="job-listings" id="job-listings">
+            <li>
+                <div class="job-title">Software Developer Intern - Company A</div>
+                <a href="#" class="job-apply">Apply Now</a>
+            </li>
+            <li>
+                <div class="job-title">Data Analyst - Company B</div>
+                <a href="#" class="job-apply">Apply Now</a>
+            </li>
+            <li>
+                <div class="job-title">Marketing Coordinator - Company C</div>
+                <a href="#" class="job-apply">Apply Now</a>
+            </li>
+            <li>
+                <div class="job-title">Frontend Engineer - Company D</div>
+                <a href="#" class="job-apply">Apply Now</a>
+            </li>
+        </ul>
+
+        <div class="pagination">
+            <button id="prev-page" disabled>&laquo; Previous</button>
+            <button id="next-page">Next &raquo;</button>
+        </div>
+    </div>
+
+    <script>
+        // Job data placeholder
+        const jobs = [
+            { title: 'Software Developer Intern - Company A', link: '#' },
+            { title: 'Data Analyst - Company B', link: '#' },
+            { title: 'Marketing Coordinator - Company C', link: '#' },
+            { title: 'Frontend Engineer - Company D', link: '#' },
+        ];
+
+        const jobList = document.getElementById('job-listings');
+        const searchInput = document.getElementById('job-search');
+        const renderJobs = (filteredJobs) => {
+            jobList.innerHTML = '';
+            filteredJobs.forEach(job => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <div class="job-title">${job.title}</div>
+                    <a href="${job.link}" class="job-apply">Apply Now</a>
+                `;
+                jobList.appendChild(li);
+            });
+        };
+
+        // Filter jobs based on search query
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            const filteredJobs = jobs.filter(job =>
+                job.title.toLowerCase().includes(query)
+            );
+            renderJobs(filteredJobs);
+        });
+
+        // Initial render
+        renderJobs(jobs);
+    </script>
+</body>
+</html>

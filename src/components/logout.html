@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout | Scholar Sync</title>
+    <!-- React and ReactDOM -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden; /* Prevent scrolling */
+            display: flex; /* Use flexbox */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            animation: backgroundAnimation 10s ease infinite; /* Add animation */
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background-color: #f4f8fb; /* Initial color */
+            }
+            50% {
+                background-color: #a1c4fd; /* Midway color */
+            }
+            100% {
+                background-color: #f4f8fb; /* Back to initial color */
+            }
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0; /* Behind the logout container */
+        }
+
+        .logout-container {
+            background-color: white;
+            border-radius: 25px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 450px;
+            text-align: center;
+            position: relative; /* For z-index */
+            z-index: 1; /* Ensure it appears above the background */
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #1d4ed8; /* Blue color for header */
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .footer a {
+            color: #1d4ed8;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const Logout = () => {
+            return (
+                <div className="logout-container">
+                    <div className="header" style={{ display: 'flex', alignItems: 'center', backgroundColor: '#1d4ed8', padding: '10px', borderRadius: '25px 25px 0 0' }}>
+                        <img src="images/logo.png" alt="Logo" style={{ width: '130px', height: '130px', marginRight: '10px' }} />
+                        <h1 style={{ color: 'white', fontSize: '30px', margin: 0 }}>Scholar Sync</h1>
+                    </div>
+                    <h2>Logout Successful</h2>
+                    <p>You have been logged out of your account.</p>
+                    <div className="footer">
+                        <a href="index.html">Return to Home</a>
+                    </div>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<Logout />, document.getElementById('root'));
+
+        // Initialize particles.js
+        particlesJS.load('particles-js', 'path/to/particles.json', function() {
+            console.log('callback - particles.js config loaded');
+        });
+    </script>
+</body>
+</html>

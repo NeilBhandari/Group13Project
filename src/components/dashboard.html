@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholar Sync Dashboard</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f8fb;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #1d4ed8; /* Blue color for header */
+            color: white;
+        }
+
+        .header img {
+            height: 80px;
+            width: 80px;
+            margin-right: 10px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .widget {
+            background-color: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .widget h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .footer {
+            background-color: white;
+            padding: 16px;
+            margin-top: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer a {
+            color: #1d4ed8;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
+
+        function Header() {
+            return (
+                <header className="header shadow-md p-4 flex justify-between items-center">
+                    <div className="flex items-center">
+                        <img src="images/logo.png" alt="Scholar Sync logo" />
+                        <h1 className="text-xl font-bold">Scholar Sync</h1>
+                    </div>
+                    <nav className="flex space-x-4">
+                        <a href="scholarships.html" className="text-white hover:text-blue-300">Scholarships</a>
+                        <a href="#" className="text-white hover:text-blue-300">Tutoring</a>
+                        <a href="jobs.html" className="text-white hover:text-blue-300">Jobs</a>
+                        <a href="#" className="text-white hover:text-blue-300">Profile</a>
+                        <a href="logout.html" className="text-white hover:text-blue-300">Logout</a>
+                        <div className="relative">
+                            <i className="fas fa-bell text-white hover:text-blue-300"></i>
+                            <span className="absolute top-0 right-0 inline-block w-2 h-2 bg-red-600 rounded-full"></span>
+                        </div>
+                    </nav>
+                </header>
+            );
+        }
+
+        function Widget({ title, children, buttonText, buttonLink }) {
+            return (
+                <div className="widget">
+                    <h3 className="font-bold mb-2">{title}</h3>
+                    {children}
+                    <a href={buttonLink} className="text-blue-500 hover:underline">{buttonText}</a>
+                </div>
+            );
+        }
+
+        function MainContent() {
+            return (
+                <main className="flex-1 p-4">
+                    <h2 className="text-2xl font-bold mb-4">Welcome back, John Doe!</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <Widget title="Recent Scholarships" buttonText="View All Scholarships" buttonLink="#">
+                            <ul>
+                                <li className="mb-2">
+                                    <h4 className="font-bold">Scholarship A</h4>
+                                    <p>Eligibility: Criteria A</p>
+                                    <p>Deadline: 2023-12-31</p>
+                                </li>
+                                <li className="mb-2">
+                                    <h4 className="font-bold">Scholarship B</h4>
+                                    <p>Eligibility: Criteria B</p>
+                                    <p>Deadline: 2023-11-30</p>
+                                </li>
+                                <li className="mb-2">
+                                    <h4 className="font-bold">Scholarship C</h4>
+                                    <p>Eligibility: Criteria C</p>
+                                    <p>Deadline: 2023-10-31</p>
+                                </li>
+                            </ul>
+                        </Widget>
+                        <Widget title="Upcoming Tutoring Sessions" buttonText="Manage Tutoring Sessions" buttonLink="#">
+                            <ul>
+                                <li className="mb-2">
+                                    <h4 className="font-bold">Math with Tutor A</h4>
+                                    <p>Date: 2023-10-15</p>
+                                </li>
+                                <li className="mb-2">
+                                    <h4 className="font-bold">Science with Tutor B</h4>
+                                    <p>Date: 2023-10-20</p>
+                                </li>
+                                <li className="mb-2">
+                                    <h4 className="font-bold">English with Tutor C</h4>
+                                    <p>Date: 2023-10-25</p>
+                                </li>
+                            </ul>
+                        </Widget>
+                        <Widget title="Job Opportunities" buttonText="View All Jobs" buttonLink="#">
+                            <ul>
+                                <li className="mb-2">
+                                    <h4 className="font-bold">Job A at Company A</h4>
+                                    <p>Deadline: 2023-12-31</p>
+                                </li>
+                                <li className="mb-2">
+                                    <h4 className="font-bold">Job B at Company B</h4>
+                                    <p>Deadline: 2023-11-30</p>
+                                </li>
+                                <li className="mb-2">
+                                    <h4 className="font-bold">Job C at Company C</h4>
+                                    <p>Deadline: 2023-10-31</p>
+                                </li>
+                            </ul>
+                        </Widget>
+                        <Widget title="Study Resources" buttonText="Explore Resources" buttonLink="#">
+                            <ul>
+                                <li className="mb-2">
+                                    <h4 className="font-bold">Guide A</h4>
+                                    <p>Description of Guide A</p>
+                                </li>
+                                <li className="mb-2">
+                                    <h4 className="font-bold">Video B</h4>
+                                    <p>Description of Video B</p>
+                                </li>
+                                <li className="mb-2">
+                                    <h4 className="font-bold">Guide C</h4>
+                                    <p>Description of Guide C</p>
+                                </li>
+                            </ul>
+                        </Widget>
+                        <Widget title="Notifications" buttonText="View All Notifications" buttonLink="#">
+                            <ul>
+                                <li className="mb-2">
+                                    <h4 className="font-bold">Notification A</h4>
+                                    <p>Details of Notification A</p>
+                                </li>
+                                <li className="mb-2">
+                                    <h4 class ="font-bold">Notification B</h4>
+                                    <p>Details of Notification B</p>
+                                </li>
+                                <li className="mb-2">
+                                    <h4 className="font-bold">Notification C</h4>
+                                    <p>Details of Notification C</p>
+                                </li>
+                            </ul>
+                        </Widget>
+                    </div>
+                </main>
+            );
+        }
+
+        function Footer() {
+            return (
+                <footer className="footer">
+                    <div className="flex justify-between">
+                        <a href="#" className="text-gray-700 hover:text-blue-500">Privacy Policy</a>
+                        <a href="#" className="text-gray-700 hover:text-blue-500">Terms of Service</a>
+                        <a href="#" className="text-gray-700 hover:text-blue-500">Contact Us</a>
+                    </div>
+                </footer>
+            );
+        }
+
+        function Dashboard() {
+            return (
+                <div className="min-h-screen flex flex-col">
+                    <Header />
+                    <div className="flex flex-1">
+                        <MainContent />
+                    </div>
+                    <Footer />
+                </div>
+            );
+        }
+
+        ReactDOM.render(<Dashboard />, document.getElementById('root'));
+    </script>
+</body>
+</html>
