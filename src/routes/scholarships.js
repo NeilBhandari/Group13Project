@@ -1,14 +1,15 @@
+// routes/scholarships.js
 const express = require('express');
 const router = express.Router();
-const Tutoring = require('../models/Tutoring');
+const Scholarship = require('../models/Scholarships');
 
 router.get('/', async (req, res) => {
     try {
         const limit = parseInt(req.query.limit) || 0; // Get limit from query params
-        const tutoring = await Tutoring.find().limit(limit);
-        res.json(tutoring);
+        const scholarships = await Scholarship.find().limit(limit);
+        res.json(scholarships);
     } catch (err) {
-        console.error('Error in tutoring route:', err);
+        console.error('Error in scholarships route:', err);
         res.status(500).json({ message: err.message });
     }
 });
