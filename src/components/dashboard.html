@@ -74,6 +74,24 @@
         const { useState } = React;
 
         function Header() {
+            const [isDropdownVisible, setDropdownVisible] = useState(false);
+            const [notifications, setNotifications] = useState([]); // Array to hold notifications
+
+            const handleMouseEnter = () => {
+                setDropdownVisible(true);
+            };
+
+            const handleMouseLeave = () => {
+                setDropdownVisible(false);
+            };
+
+            const handleBellClick = () => {
+                window.location.href = 'notifications.html';
+            };
+
+            // Determine if there are notifications
+            const hasNotifications = notifications.length > 0;
+
             return (
                 <header className="header shadow-md p-4 flex justify-between items-center">
                     <div className="flex items-center">
@@ -86,9 +104,24 @@
                         <a href="jobs.html" className="text-white hover:text-blue-300">Jobs</a>
                         <a href="#" className="text-white hover:text-blue-300">Profile</a>
                         <a href="logout.html" className="text-white hover:text-blue-300">Logout</a>
-                        <div className="relative">
-                            <i className="fas fa-bell text-white hover:text-blue-300"></i>
-                            <span className="absolute top-0 right-0 inline-block w-2 h-2 bg-red-600 rounded-full"></span>
+                        <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                            <i className={`fas fa-bell ${hasNotifications ? 'text-white' : 'text-gray-400'} hover:text-blue-300`} onClick={handleBellClick}></i>
+                            {hasNotifications && (
+                                <span className="absolute top-0 right-0 inline-block w-2 h-2 bg-red-600 rounded-full"></span>
+                            )}
+                            {isDropdownVisible && (
+                                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                                    {hasNotifications ? (
+                                        <ul className="py-2">
+                                            {notifications.map((notification, index) => (
+                                                <li key={index} className="px-4 py-2 hover:bg-gray-100">{notification}</li>
+                                            ))}
+                                        </ul>
+                                        ) : (
+                                            <div className="px-4 py-2 text-gray-500">Nothing new here</div>
+                                            )}
+                                </div>
+                            )}
                         </div>
                     </nav>
                 </header>
