@@ -27,3 +27,22 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Node.js ###
+node_modules/          # Ignore dependency files
+npm-debug.log*         # Ignore debug logs
+yarn-debug.log*        # Ignore yarn debug logs
+yarn-error.log*
+.pnpm-debug.log*
+.env                   # Ignore environment files
+.env.local
+.env.*.local
+.DS_Store             # macOS system file
+logs/
+*.log                  # Ignore all log files
+logs/**
+
+### Build Files ###
+dist/                  # Ignore build artifacts
+build/
+coverage/              # Test coverage output
