@@ -26,24 +26,58 @@ const JobsPage = () => {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div>
-            <h1>Jobs</h1>
+        <div style={styles.container}>
+            <h1 style={styles.title}>Jobs</h1>
             {jobs.length === 0 ? (
                 <p>No jobs available.</p>
             ) : (
-                <ul>
+                <div style={styles.cardsContainer}>
                     {jobs.map(job => (
-                        <li key={job._id}>
-                            <h3>{job.title}</h3>
-                            <p>Employer: {job.employer}</p>
-                            <p>Contact: {job.contact}</p>
-                            <p>Deadline: {job.deadline}</p>
-                        </li>
+                        <div key={job._id} style={styles.card}>
+                            <h3 style={styles.cardTitle}>{job.title}</h3>
+                            <p><strong>Employer:</strong> {job.employer}</p>
+                            <p><strong>Contact:</strong> {job.contact}</p>
+                            <p><strong>Deadline:</strong> {new Date(job.deadline).toLocaleDateString()}</p>
+                        </div>
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );
 };
+
+const styles = {
+    container: {
+        padding: '20px',
+        maxWidth: '1200px',
+        margin: '0 auto',
+    },
+    title: {
+        fontSize: '32px',
+        marginBottom: '20px',
+        textAlign: 'center',
+    },
+    cardsContainer: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+        gap: '20px',
+    },
+    card: {
+        backgroundColor: '#f9f9f9',
+        border: '1px solid #ddd',
+        borderRadius: '8px',
+        padding: '20px',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        transition: 'transform 0.2s',
+        overflowWrap: 'break-word', // Wrap long words
+        wordWrap: 'break-word',
+        overflow: 'hidden', // Prevent overflow
+    },
+    cardTitle: {
+        fontSize: '24px',
+        marginBottom: '10px',
+    },
+};
+
 
 export default JobsPage;
