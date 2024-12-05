@@ -26,25 +26,58 @@ const ScholarshipsPage = () => {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div>
-            <h1>Scholarships</h1>
+        <div style={styles.container}>
+            <h1 style={styles.title}>Scholarships</h1>
             {scholarships.length === 0 ? (
                 <p>No scholarships available.</p>
             ) : (
-                <ul>
+                <div style={styles.cardsContainer}>
                     {scholarships.map(scholarship => (
-                        <li key={scholarship._id}>
-                            <h3>{scholarship.name}</h3>
-                            <p>Details: {scholarship.details}</p>
-                            <p>Eligibility: {scholarship.eligibility}</p>
-                            <p>Contact: {scholarship.contactInfo}</p>
-                            <p>Deadline: {scholarship.deadline}</p>
-                        </li>
+                        <div key={scholarship._id} style={styles.card}>
+                            <h3 style={styles.cardTitle}>{scholarship.name}</h3>
+                            <p><strong>Details:</strong> {scholarship.details}</p>
+                            <p><strong>Eligibility:</strong> {scholarship.eligibility}</p>
+                            <p><strong>Contact:</strong> {scholarship.contactInfo}</p>
+                            <p><strong>Deadline:</strong> {new Date(scholarship.deadline).toLocaleDateString()}</p>
+                        </div>
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );
+};
+
+const styles = {
+    container: {
+        padding: '20px',
+        maxWidth: '1200px',
+        margin: '0 auto',
+    },
+    title: {
+        fontSize: '32px',
+        marginBottom: '20px',
+        textAlign: 'center',
+    },
+    cardsContainer: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+        gap: '20px',
+    },
+    card: {
+        backgroundColor: '#f9f9f9',
+        border: '1px solid #ddd',
+        borderRadius: '8px',
+        padding: '20px',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        transition: 'transform 0.2s',
+        overflowWrap: 'break-word', // Wrap long words
+        wordWrap: 'break-word',
+        overflow: 'hidden', // Prevent overflow
+    },
+    cardTitle: {
+        fontSize: '24px',
+        marginBottom: '10px',
+    },
 };
 
 export default ScholarshipsPage;
