@@ -26,23 +26,55 @@ const TutoringPage = () => {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div>
-            <h1>Tutoring</h1>
+        <div style={styles.container}>
+            <h1 style={styles.title}>Tutoring</h1>
             {tutoring.length === 0 ? (
                 <p>No tutoring records available.</p>
             ) : (
-                <ul>
+                <div style={styles.cardsContainer}>
                     {tutoring.map(record => (
-                        <li key={record._id}>
-                            <h3>{record.name}</h3>
-                            <p>Email: {record.email}</p>
-                            <p>Details: {record.details}</p>
-                        </li>
+                        <div key={record._id} style={styles.card}>
+                            <h3 style={styles.cardTitle}>{record.name}</h3>
+                            <p><strong>Email:</strong> {record.email}</p>
+                            <p><strong>Details:</strong> {record.details}</p>
+                        </div>
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );
+};
+
+const styles = {
+    container: {
+        padding: '20px',
+        maxWidth: '1200px',
+        margin: '0 auto',
+    },
+    title: {
+        fontSize: '32px',
+        marginBottom: '20px',
+        textAlign: 'center',
+    },
+    cardsContainer: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+        gap: '20px',
+    },
+    card: {
+        backgroundColor: '#f9f9f9',
+        border: '1px solid #ddd',
+        borderRadius: '8px',
+        padding: '20px',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        transition: 'transform 0.2s',
+        wordWrap: 'break-word',
+        overflow: 'hidden',
+    },
+    cardTitle: {
+        fontSize: '24px',
+        marginBottom: '10px',
+    },
 };
 
 export default TutoringPage;
