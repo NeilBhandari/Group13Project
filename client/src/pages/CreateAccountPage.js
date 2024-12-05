@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -27,11 +27,32 @@ const CreateAccountPage = () => {
         }
     };
 
+    useEffect(() => {
+        const colors = ['#f4f8fb', '#a1c4fd', '#f4f8fb']; // Colors to transition
+        let index = 0;
+
+        const changeBackgroundColor = () => {
+            document.body.style.transition = 'background-color 2s ease'; // Smooth transition
+            document.body.style.backgroundColor = colors[index];
+            index = (index + 1) % colors.length; // Cycle through colors
+        };
+
+        const interval = setInterval(changeBackgroundColor, 3000); // Change color every 3 seconds
+
+        // Initial color set
+        changeBackgroundColor();
+
+        return () => {
+            clearInterval(interval); // Cleanup interval on component unmount
+            document.body.style.backgroundColor = ''; // Reset background color
+        };
+    }, []);
+
     return (
-        <div style={styles.container}>
+        <div className="create-account-container">
             <h2>Create an Account</h2>
-            {error && <p style={styles.error}>{error}</p>}
-            <form onSubmit={handleCreateAccount}>
+            {error && <p className="error-message">{error}</p>}
+            <form onSubmit={handleCreateAccount} className="create-account-form">
                 <input
                     type="text"
                     name="name"
@@ -39,7 +60,7 @@ const CreateAccountPage = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    style={styles.input}
+                    className="form-input"
                 />
                 <input
                     type="email"
@@ -48,16 +69,16 @@ const CreateAccountPage = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    style={styles.input}
+                    className="form-input"
                 />
                 <select
                     name="accessLevel"
                     value={formData.accessLevel}
                     onChange={handleChange}
                     required
-                    style={styles.input}
+                    className="form-select"
                 >
-                    <option value="user">User</option>
+                    <option value="user">User </option>
                     <option value="admin">Admin</option>
                 </select>
                 <input
@@ -67,46 +88,72 @@ const CreateAccountPage = () => {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    style={styles.input}
+                    className="form-input"
                 />
-                <button type="submit" style={styles.button}>Create Account</button>
+                <button type="submit" className="submit-button">Create Account</button>
             </form>
+
+            {/* Inline styles */}
+            <style>
+                {`
+                    .create-account-container {
+                        max-width: 400px;
+                        margin: 100px auto;
+                        padding: 20px;
+                        background-color: #ffffff;
+                        border-radius: 10px;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                        text-align: center;
+                    }
+
+                    h2 {
+                        font-size: 24px;
+                        margin-bottom: 20px;
+                        color: #333;
+                    }
+
+                    .error-message {
+                        color: red;
+                        margin-bottom: 15px;
+                    }
+
+                    .create-account-form {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    .form-input, .form-select {
+                        padding: 12px;
+                        margin: 10px 0;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        transition: border-color 0.3s;
+                    }
+
+                    .form-input:focus, .form-select:focus {
+                        border-color: #007bff;
+                        outline: none;
+                    }
+
+                    .submit-button {
+                        padding: 12px;
+                        background-color: #1d4ed8;
+                        color: white 
+                        border: none;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        cursor: pointer;
+                        transition: background-color 0.3s;
+                    }
+
+                    .submit-button:hover {
+                        background-color: #2563eb;
+                    }
+                `}
+            </style>
         </div>
     );
-};
-
-const styles = {
-    container: {
-        maxWidth: '400px',
-        margin: '0 auto',
-        padding: '20px',
-        textAlign: 'center',
-        border: '1px solid #ccc',
-        borderRadius: '8px',
-    },
-    input: {
-        display: 'block',
-        width: '100%',
-        margin: '10px 0',
-        padding: '10px',
-        fontSize: '1rem',
-    },
-    button: {
-        padding: '10px 20px',
-        fontSize: '1rem',
-        backgroundColor: '#007bff',
-        color: '#fff',
-        border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer',
-    },
-    link: {
-        color: '#007bff',
-        textDecoration: 'none',
-    },
-    error: {
-        color: 'red',
-    },
 };
 
 export default CreateAccountPage;
