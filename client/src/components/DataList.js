@@ -40,6 +40,10 @@ const DataList = () => {
 
     return (
         <div style={styles.dashboard}>
+            {/* Greeting message */}
+            {user && <h2 style={styles.greeting}>Hello, {user.name}!</h2>}
+            <br></br>
+
             {/* Display Add Event button for admins only */}
             {user?.accessLevel === 'admin' && (
                 <button style={styles.addEventButton} onClick={() => navigate('/add-event')}>
@@ -47,6 +51,8 @@ const DataList = () => {
                 </button>
             )}
 
+            <br></br>
+            <br></br>
             <div style={styles.cardsContainer}>
                 <div style={styles.card}>
                     <h2>Jobs</h2>
@@ -104,6 +110,11 @@ const styles = {
     dashboard: {
         padding: '20px',
     },
+    greeting: {
+        marginBottom: '20px',
+        fontSize: '24px',
+        color: '#333',
+    },
     addEventButton: {
         alignSelf: 'flex-start',
         backgroundColor: '#007bff',
@@ -112,14 +123,14 @@ const styles = {
         padding: '10px 20px',
         borderRadius: '4px',
         cursor: 'pointer',
-        fontSize: '1rem',
+ fontSize: '1rem',
         marginBottom: '20px',
     },
     cardsContainer: {
         display: 'flex',
         justifyContent: 'space-between',
         gap: '20px',
-        flexWrap: 'wrap', // Ensure responsive wrapping on smaller screens
+        flexWrap: 'wrap',
     },
     card: {
         flex: '1 1 calc(33.333% - 20px)',
